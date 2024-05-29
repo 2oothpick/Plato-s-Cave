@@ -42,6 +42,10 @@ document.addEventListener('keydown', onKeyDown, false);
 
 // floor texture
 let floorTexture = new THREE.ImageUtils.loadTexture('img/Floortexture.jpg')
+floorTexture.wrapS = THREE.RepeatWrapping; // wrapS is horizontal direction
+floorTexture.wrapT = THREE.RepeatWrapping; // wrapT is vertical direction
+floorTexture.repeat.set(20, 20); // Texture reptition
+
 
 // floor
 let planeGeometry = new THREE.PlaneBufferGeometry(50, 50) // BoxGeometry is the shape of the object
@@ -57,6 +61,47 @@ floorPlane.position.y = -Math.PI  // 180 degrees rotation
 
 scene.add(floorPlane);
 
+// walls
+const wallGroup = new THREE.Group();  // create group to hold the walls
+scene.add(wallGroup);
+
+// front wall
+const frontWall = new THREE.Mesh(
+    new THREE.BoxGeometry(50, 20, 0.001),
+    new THREE.MeshBasicMaterial({ color: 'green' }),
+);
+
+frontWall.position.z = -20; // move wall back a bit
+
+// left wall
+const leftWall = new THREE.Mesh(
+    new THREE.BoxGeometry(50, 20, 0.001),
+    new THREE.MeshBasicMaterial({ color: 'pink' })
+)
+
+leftWall.rotation.y = Math.PI / 2;
+leftWall.position.x = -20;
+
+// right wall
+const rightWall = new THREE.Mesh(
+    new THREE.BoxGeometry(50, 20, 0.001),
+    new THREE.MeshBasicMaterial({ color: 'gold' })
+)
+
+rightWall.rotation.y = Math.PI / 2;
+rightWall.position.x = 20;
+
+wallGroup.add(frontWall, leftWall, rightWall); // add walls to scene
+
+// Ceiling
+const ceilingGeometry = new THREE.PlaneBufferGeometry(50, 50)
+const ceilingMaterial = new THREE.MeshBasicMaterial({ color: 'blue' });
+const ceilingPlane = new THREE.Mesh(ceilingGeometry, ceilingMaterial);
+
+ceilingPlane.rotation.x = Math.PI / 2;
+ceilingPlane.position.y = 10;
+scene.add(ceilingPlane);
+
 
 // function for key presses
 function onKeyDown(event) {
@@ -64,22 +109,22 @@ function onKeyDown(event) {
 
     // right arrow key
     if (keycode === 39) {
-        camera.translateX(-0.05)
+        camera.translateX(0.05)
     }
 
     // left arrow key
     else if (keycode === 37) {
-        camera.translateX(0.05)
+        camera.translateX(-0.05)
     }
 
     // up arrow key
     else if (keycode === 38) {
-        camera.translateY(-0.05)
+        camera.translateY(0.05)
     }
 
     // down arrow key
     else if (keycode === 40) {
-        camera.translateY(0.05)
+        camera.translateY(-0.05)
     }
 }
 
