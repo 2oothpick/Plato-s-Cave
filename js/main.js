@@ -40,13 +40,21 @@ scene.add(cube)
 // Event Listenter for movement
 document.addEventListener('keydown', onKeyDown, false);
 
+// floor texture
+let floorTexture = new THREE.ImageUtils.loadTexture('img/Floortexture.jpg')
+
 // floor
-let planeGeometry = new THREE.PlaneGeometry(50, 50) // BoxGeometry is the shape of the object
+let planeGeometry = new THREE.PlaneBufferGeometry(50, 50) // BoxGeometry is the shape of the object
 let planeMaterial = new THREE.MeshBasicMaterial({
-    color: 'green',
+    map: floorTexture,
     side: THREE.DoubleSide,
 });
+
 let floorPlane = new THREE.Mesh(planeGeometry, planeMaterial);
+
+floorPlane.rotation.x = Math.PI / 2 // 90 degrees rotation
+floorPlane.position.y = -Math.PI  // 180 degrees rotation
+
 scene.add(floorPlane);
 
 
