@@ -33,13 +33,22 @@ scene.add(sunLight);
 
 let geometry = new THREE.BoxGeometry(1, 1, 1);  // Shape of object
 let material = new THREE.MeshBasicMaterial({ color: 'black' }); // Object's color
-
 const cube = new THREE.Mesh(geometry, material);
 scene.add(cube)
 
 // Controls
 // Event Listenter for movement
 document.addEventListener('keydown', onKeyDown, false);
+
+// floor
+let planeGeometry = new THREE.PlaneGeometry(50, 50) // BoxGeometry is the shape of the object
+let planeMaterial = new THREE.MeshBasicMaterial({
+    color: 'green',
+    side: THREE.DoubleSide,
+});
+let floorPlane = new THREE.Mesh(planeGeometry, planeMaterial);
+scene.add(floorPlane);
+
 
 // function for key presses
 function onKeyDown(event) {
