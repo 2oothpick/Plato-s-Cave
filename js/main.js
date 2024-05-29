@@ -93,6 +93,12 @@ rightWall.position.x = 20;
 
 wallGroup.add(frontWall, leftWall, rightWall); // add walls to scene
 
+// loop through each wall and create the bounding box
+for (let i = 0; i < wallGroup.children.length; i++) {
+    wallGroup.children[i].BBox = new THREE.Box3();
+    wallGroup.children[i].BBox.setFromObject(wallGroup.children[i])
+}
+
 // Ceiling
 const ceilingGeometry = new THREE.PlaneBufferGeometry(50, 50)
 const ceilingMaterial = new THREE.MeshBasicMaterial({ color: 'blue' });
