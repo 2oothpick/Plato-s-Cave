@@ -32,15 +32,42 @@ sunLight.position.y = 15;
 scene.add(sunLight);
 
 let geometry = new THREE.BoxGeometry(1, 1, 1);  // Shape of object
-let material = new THREE.MeshBasicMaterial({ color: 'blue' }); // Object's color
+let material = new THREE.MeshBasicMaterial({ color: 'black' }); // Object's color
 
 const cube = new THREE.Mesh(geometry, material);
 scene.add(cube)
 
 // Controls
+// Event Listenter for movement
+document.addEventListener('keydown', onKeyDown, false);
+
+// function for key presses
+function onKeyDown(event) {
+    let keycode = event.which;
+
+    // right arrow key
+    if (keycode === 39) {
+        camera.translateX(-0.05)
+    }
+
+    // left arrow key
+    else if (keycode === 37) {
+        camera.translateX(0.05)
+    }
+
+    // up arrow key
+    else if (keycode === 38) {
+        camera.translateY(-0.05)
+    }
+
+    // down arrow key
+    else if (keycode === 40) {
+        camera.translateY(0.05)
+    }
+}
 
 
-let render = function() {  
+let render = function () {
     cube.rotation.x += 0.01
     cube.rotation.y += 0.01
     renderer.render(scene, camera) // Renders the scene
