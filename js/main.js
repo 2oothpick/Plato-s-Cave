@@ -37,7 +37,14 @@ let material = new THREE.MeshBasicMaterial({ color: 'blue' }); // Object's color
 const cube = new THREE.Mesh(geometry, material);
 scene.add(cube)
 
+// Controls
 
 
-// Render
-renderer.render(scene, camera);
+let render = function() {  
+    cube.rotation.x += 0.01
+    cube.rotation.y += 0.01
+    renderer.render(scene, camera) // Renders the scene
+    requestAnimationFrame(render)
+}
+
+render();
