@@ -12,34 +12,39 @@
     </head>
 
     <body>
-         <div class="background_menu">
-            <div id="menu">
-                <div id="img_container">
-                    <img src="./public/img/virgin_on_the_rocks.jpg"
-                         alt="virgin on the rocks">
-                </div>
+        <div id="menu">
+
+            <div id="img_container">
+                <div id="starry_night_bg"></div>
+            </div>
+            <div id="content_container">
                 <div id="content">
-                    <h1>Art Gallery</h1>
-                    <div>
-                        <p>This is an interactive 3D gallery</p>
-                        <p>Made with coffee and three.js</p>
+                    <div class="title">
+                        <h1 class="stroke">3D Art Gallery</h1>
+                        <h1 class="main">3D Art Gallery</h1>
                     </div>
-
                     <div>
-                        <p>Instructions</p>
-                        <p>Arrow keys</p>
-                        <p>Look around with mouse</p>
+                        <p>This is an interactive 3D gallery.</p>
+                        <p>Made with Three.js</p>
                     </div>
-
+                    <div>
+                        <p class="instructions">Instructions:</p>
+                        <p>Arrow Keys or W/A/S/D to Move Around</p>
+                        <p>Mouse to Look Around</p>
+                    </div>
                     <div id="play_button">
-                        <p>Enter the Cave</p>
+                        <p>EXPLORE ART</p>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- <script src="three.js"></script> -->
+
+        <div id="painting-info"
+             style="display: none;"></div>
+
         <script type="module"
                 src="main.js"></script>
+
     </body>
 
 </html>
