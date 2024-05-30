@@ -3,6 +3,7 @@
     "three": "^0.164.1"
   },
   "devDependencies": {
-    "vite": "^5.2.12"
+    "vite": "^5.2.12",
+    "three-stdlib": "^2.21.8"
   }
 }

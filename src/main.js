@@ -1,5 +1,8 @@
-//import * as THREE from 'three.module';
-//console.log('three object here',THREE)
+import * as THREE from 'three';
+import { PointerLockControls } from 'three-stdlib';
+
+
+// console.log('three object here', THREE)
 
 // Scene
 const scene = new THREE.Scene();
@@ -22,8 +25,8 @@ document.body.appendChild(renderer.domElement) // add renderer to html
 
 
 // Ambient Lights
-let ambientLight = new THREE.AmbientLight(0x101010, 1.0); // color, intensity, distance, decay
-ambientLight.position = camera.position; // light follows camera
+const ambientLight = new THREE.AmbientLight(0xfffff, 1.0); // color, intensity, distance, decay
+//ambientLight.position = camera.position; // light follows camera
 scene.add(ambientLight);
 
 // Directional Light
@@ -41,14 +44,15 @@ scene.add(cube)
 document.addEventListener('keydown', onKeyDown, false);
 
 // floor texture
-let floorTexture = new THREE.ImageUtils.loadTexture('img/Floortexture.jpg')
+let textureLoader = new THREE.TextureLoader();
+const floorTexture = textureLoader.load('public/img/Floortexture.jpg');
 floorTexture.wrapS = THREE.RepeatWrapping; // wrapS is horizontal direction
 floorTexture.wrapT = THREE.RepeatWrapping; // wrapT is vertical direction
 floorTexture.repeat.set(20, 20); // Texture reptition
 
 
 // floor
-let planeGeometry = new THREE.PlaneBufferGeometry(50, 50) // BoxGeometry is the shape of the object
+let planeGeometry = new THREE.PlaneGeometry(50, 50) // BoxGeometry is the shape of the object
 let planeMaterial = new THREE.MeshBasicMaterial({
     map: floorTexture,
     side: THREE.DoubleSide,
@@ -100,7 +104,7 @@ for (let i = 0; i < wallGroup.children.length; i++) {
 }
 
 // Ceiling
-const ceilingGeometry = new THREE.PlaneBufferGeometry(50, 50)
+const ceilingGeometry = new THREE.PlaneGeometry(50, 50)
 const ceilingMaterial = new THREE.MeshBasicMaterial({ color: 'blue' });
 const ceilingPlane = new THREE.Mesh(ceilingGeometry, ceilingMaterial);
 
@@ -108,6 +112,31 @@ ceilingPlane.rotation.x = Math.PI / 2;
 ceilingPlane.position.y = 10;
 scene.add(ceilingPlane);
 
+//paintings
+function createPainting(imageURL, width, height, position) {
+    const textureLoader = new THREE.TextureLoader();
+    const paintingTexture = textureLoader.load(imageURL)
+    const paintingMaterial = new THREE.MeshBasicMaterial({
+        map: paintingTexture,
+    });
+    const paintingGeometry = new THREE.PlaneGeometry(width, height);
+    const painting = new THREE.Mesh(paintingGeometry, paintingMaterial)
+    painting.position.set(position.x, position.y, position.z)
+    return painting;
+}
+
+const painting1 = createPainting(
+    'public/artwork/last_supper.jpg',
+    10, 5,
+    new THREE.Vector3(-10, 5, -19.99))
+
+const painting2 = createPainting(
+    'public/artwork/virgin_and_child.jpg',
+    10, 5,
+    new THREE.Vector3(10, 5, -19.99)
+)
+
+scene.add(painting1, painting2)
 
 // function for key presses
 function onKeyDown(event) {
