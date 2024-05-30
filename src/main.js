@@ -138,28 +138,54 @@ const painting2 = createPainting(
 
 scene.add(painting1, painting2)
 
+// controls
+const controls = new PointerLockControls(camera, document.body);
+
+// Lock the pointer (controls are activated) and hide menu when tour starts
+function startExperience(){
+    // Lock pointer
+    controls.lock()
+    // Hide menu
+    hideMenu();
+}
+
+// hide menu
+function hideMenu(){
+    const menu = document.getElementById('menu')
+    menu.style.display = 'none'
+}
+
+// show menu
+function showMenu(){
+    const menu = document.getElementById('menu')
+    menu.style.display = 'block'  
+}
+
+const playButton = document.getElementById('play_button')
+playButton.addEventListener('click', startExperience);
+
 // function for key presses
 function onKeyDown(event) {
     let keycode = event.which;
 
     // right arrow key
-    if (keycode === 39) {
-        camera.translateX(0.05)
+    if (keycode === 39 || keycode === 68 ) {
+        controls.moveRight(0.1)
     }
 
     // left arrow key
-    else if (keycode === 37) {
-        camera.translateX(-0.05)
+    else if (keycode === 37 || keycode === 65) {
+        controls.moveRight(-0.1)
     }
 
     // up arrow key
-    else if (keycode === 38) {
-        camera.translateY(0.05)
+    else if (keycode === 38 || keycode === 87) {
+        controls.moveForward(0.1)
     }
 
     // down arrow key
-    else if (keycode === 40) {
-        camera.translateY(-0.05)
+    else if (keycode === 40 || keycode === 83 ) {
+        controls.moveForward(-0.1)
     }
 }
 

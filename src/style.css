@@ -31,7 +31,7 @@ canvas {
   /* Code for Firefox */
   background: #34495e;
   background-color: #34495e;
-  color: #ffffff;
+  color: #fff;
 }
 
 ::selection {
@@ -54,6 +54,7 @@ canvas {
   text-align: center;
   font-size: 1.2em;
   border-radius: 0.9em;
+  background-color: #969bd6;
   box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.6);
   overflow: hidden;
 }
@@ -61,7 +62,7 @@ canvas {
 #menu .title {
   padding: 1em;
   background-color: rgba(52, 58, 125, 0.8);
-  color: #f2c641;
+  color: #040303;
   border-radius: 0.9em;
   position: relative;
   z-index: 2;
