@@ -25,3 +25,10 @@ Then run:
 ```bash
   npx vite
 ```
+
+## Project Screenshots
+---
+![[src/public/img/screen0.png]](src/public/img/screen0.png)
+![[src/public/img/screen0.png]](src/public/img/screen1.png)
+![[src/public/img/screen0.png]](src/public/img/screen3.png)
+![[src/public/img/screen0.png]](src/public/img/screen4.png)
